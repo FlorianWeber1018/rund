@@ -1,4 +1,5 @@
 #include "main.h"
+#include "../Point.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -30,41 +31,6 @@ int main(){
 }
 
 
-
-Point::Point(int x, int y, int index)
-{
-	this->x = static_cast<double>(x);
-	this->y = static_cast<double>(y);
-	this->index = index;
-}
-double Point::distance (Point* otherPoint){
-	return sqrt(pow(this->x - otherPoint->x,2) + pow(this->y - otherPoint->y,2));
-}
-Point* Point::PointWithMinDistance(std::vector<Point> &allPoints){
-	double lastDistance = 99999999999;
-	Point* nearestPoint = nullptr;
-	for(Point& actualPoint : allPoints){
-		if(actualPoint.arrived == false){
-			if(actualPoint.distance(this) < lastDistance){
-				lastDistance = actualPoint.distance(this);
-				nearestPoint = &actualPoint;
-			}
-		}
-	}
-	return nearestPoint;
-}
-void plotPoint(std::ofstream& myFile, Point* pointToPlot, double distance){
-	myFile << pointToPlot->x << "," << pointToPlot->y << ","
-	<< pointToPlot->index << "," << distance << std::endl;
-}
-bool allPointsArrived(std::vector<Point> &allPoints){
-	for(Point& actualPoint : allPoints){
-		if(actualPoint.arrived == false){
-			return false;
-		}
-	}
-	return true;
-}
 void TSMnearest(){
 	std::ofstream myfile;
   myfile.open ("TSMnearest.csv");

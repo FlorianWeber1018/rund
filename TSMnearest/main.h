@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "../Point.h"
 class Point{
 public:
     Point(int x, int y, int index);
@@ -13,8 +14,8 @@ public:
     Point* PointWithMinDistance(std::vector<Point>& allPoints);
     int index;
 };
-void plotPoint(std::ofstream& myFile, Point* pointToPlot, double distance);
-bool allPointsArrived(std::vector<Point>& allPoints);
+
+
 
 void TSMnearest();
 

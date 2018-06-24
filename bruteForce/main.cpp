@@ -1,4 +1,5 @@
 #include "main.h"
+#include "../Point.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -36,78 +37,7 @@ int main(){
 
 
 
-Point::Point(int x, int y, int index)
-{
-	this->x = static_cast<double>(x);
-	this->y = static_cast<double>(y);
-	this->index = index;
-}
-Point::Point(){
-	this->x = 0;
-	this->y = 0;
-	this->index = 0;
-}
-double Point::distance (Point* otherPoint){
-	return sqrt(pow(this->x - otherPoint->x,2) + pow(this->y - otherPoint->y,2));
-}
-Point* Point::PointWithMinDistance(std::vector<Point> &allPoints){
-	double lastDistance = 99999999999;
-	Point* nearestPoint = nullptr;
-	for(Point& actualPoint : allPoints){
-		if(actualPoint.arrived == false){
-			if(actualPoint.distance(this) < lastDistance){
-				lastDistance = actualPoint.distance(this);
-				nearestPoint = &actualPoint;
-			}
-		}
-	}
-	return nearestPoint;
-}
-void plotPoint(std::ofstream& myFile, Point* pointToPlot, double distance){
-	myFile << pointToPlot->x << "," << pointToPlot->y << ","
-	<< pointToPlot->index << "," << distance << std::endl;
-}
-void plotAllPoints(std::vector<Point> &allPoints, std::string filename){
-	std::ofstream myfile;
-  myfile.open (filename);
-	myfile << "x,y,index,distance" << std::endl;
-	double sum=0;
-	double distance=0;
-	bool firstRun=true;
-	Point* lastPoint = nullptr;
-	for(Point& actualPoint : allPoints){
-		if(!firstRun){
-			distance = actualPoint.distance(lastPoint);
-			sum += distance;
-		}
-		firstRun=false;
-		plotPoint(myfile, &actualPoint, distance);
-		lastPoint = &actualPoint;
-	}
-	distance = allPoints[0].distance(lastPoint);
-	plotPoint(myfile, &allPoints[0], distance);
-	sum += distance;
-	myfile << ",,Sum of Distance:," << sum << std::endl;
-	myfile.close();
-}
-double calcDistanceInArray(std::vector<Point> &allPoints){
-	double sum=0;
-	double distance=0;
-	bool firstRun=true;
-	Point* lastPoint = nullptr;
-	for(Point& actualPoint : allPoints){
-		if(!firstRun){
-			distance = actualPoint.distance(lastPoint);
-			sum += distance;
-		}
-		firstRun = false;
-		lastPoint = &actualPoint;
 
-	}
-	distance = allPoints[0].distance(lastPoint);
-	sum += distance;
-	return sum;
-}
 void doTheShit(std::vector<Point> &allPoints, Matrix &transMtx){
 	std::vector<int> bestTrans = transMtx[0];
 	double bestDistance=999999999999;
@@ -182,8 +112,8 @@ void genTransMtx(Matrix& mtx){
 												tempRow.push_back(i);
 												tempRow.push_back(j);
 												tempRow.push_back(k);
-												//if(!duplicatedValuesPresent(tempRow)){
-													mtx.push_back(tempRow);
+
+												mtx.push_back(tempRow);
 
 											}
 										}
@@ -196,22 +126,4 @@ void genTransMtx(Matrix& mtx){
 			}
 		}
 	}
-}
-bool duplicatedValuesPresent(std::vector<int> &target){
-	for(int i = 0; i<11; i++){
-		int matchCounter = countMatchingElementsInVector(target, i);
-		if(matchCounter > 1 || matchCounter == 0){
-			return true;
-		}
-	}
-	return false;
-}
-int countMatchingElementsInVector(std::vector<int> &target, int cmpValue){
-	int cnt = 0;
-	for (int& actualValue : target){
-		if(actualValue==cmpValue){
-			cnt++;
-		}
-	}
-	return cnt;
 }
