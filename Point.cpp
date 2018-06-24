@@ -1,3 +1,15 @@
+#include "Point.h"
+#include <map>
+#include <math.h>
+#include <limits.h>
+#include <cstdlib>
+#include <time.h>
+
+
+
+
+
+
 Point::Point(int x, int y, int index)
 {
 	this->x = static_cast<double>(x);

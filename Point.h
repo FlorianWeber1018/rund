@@ -1,6 +1,8 @@
 #ifndef Point__h
 #define Point__h
-
+#include <vector>
+#include <iostream>
+#include <fstream>
 
 
 
