@@ -24,7 +24,9 @@ int main(){
 	Points.push_back(Point(19,7,9));
 	Points.push_back(Point(21,2,10));
 
-	std::srand(time(0));
+	std::srand(time(0));	//setzte lease des systeminteren zufallszahlengenerators auf die aktuelle uhrzeit,
+	//											damit ist sichergestellt dass bei jedem programmstart andere zufallszahlen generiert werden.
+
 
 	plotAllPoints(Points,"before.csv");
 
@@ -44,8 +46,8 @@ void doTheShit(std::vector<Point> &allPoints, int cnt){
 		int num1 = random(0,10);
 		double distance = calcDistanceInArray(allPoints);
 		swapPoints(num0, num1, allPoints);
-		if( calcDistanceInArray(allPoints) > distance ){
-			swapPoints(num0, num1, allPoints);
+		if( calcDistanceInArray(allPoints) > distance ){	//guter tausch?
+			swapPoints(num0, num1, allPoints);	//NEIN ! stelle uhrsprungszustand wieder her
 		}
 	}
 }

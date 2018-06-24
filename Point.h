@@ -25,7 +25,7 @@ public:
 };
 
 void plotAllPoints(std::vector<Point> &allPoints, std::string filename);    //Schreibt den übergebenen Vektor aus Punkten in den angegeben Dateinamen CSV Kodiert
-void plotPoint(std::ofstream& myFile, Point* pointToPlot, double distance); //Schreibt einen Punkt als Zeile csv Kodiert in geöffnete datein (übergeben als ofstream(outputFileStream))
+void plotPoint(std::ofstream& myFile, Point* pointToPlot, double distance); //Schreibt einen Punkt als Zeile csv Kodiert in geöffnete datei (übergeben als ofstream(outputFileStream))
 void swapPoints(int index0, int index1, std::vector<Point> &allPoints);  //vertauscht 2 Punkte in einem Vektor
 double calcDistanceInArray(std::vector<Point> &allPoints);  //berechnet den weg der abgeschritten werden muss um alle Punkte in einem Vektor der Reihe nach abzufahren und wieder zum Startpunbkt zurückzukehren
 int random(int lowerbounds, int upperbounds);   //generiert eine zufallszahl welche im angegebenen bereich liegt

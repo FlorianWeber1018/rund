@@ -10,6 +10,6 @@
 
 
 void doTheShit(std::vector<Point> &allPoints, Matrix &transMtx);
-void genTransMtx(Matrix &mtx);
+void genTransMtx(Matrix &mtx);  // generiere eine matrix mit allen möglichen transformationen
 
 #endif

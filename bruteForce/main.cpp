@@ -43,17 +43,17 @@ void doTheShit(std::vector<Point> &allPoints, Matrix &transMtx){
 	double bestDistance=999999999999;
 	double actualDistance=0;
 	std::vector<Point> tempPoints(11);
-	for(std::vector<int> &transVec : transMtx){
-		for(int i=0; i<11;i++){
+	for(std::vector<int> &transVec : transMtx){				//versuche jede Transformation
+		for(int i=0; i<11;i++){									//vollzieht aktuelle transformation
 			tempPoints[i]=allPoints[transVec[i]];
 		}
 		actualDistance=calcDistanceInArray(tempPoints);
-		if(actualDistance<bestDistance){
+		if(actualDistance<bestDistance){		//transformation besser als die aktuell beste?
 			bestDistance=actualDistance;
 			bestTrans = transVec;
 		}
 	}
-	for(int i=0; i<11;i++){
+	for(int i=0; i<11;i++){				//vollzieht beste transformation
 		tempPoints[i]=allPoints[bestTrans[i]];
 	}
 	plotAllPoints(tempPoints, "bestResultBruteforce.csv");

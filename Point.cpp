@@ -22,14 +22,14 @@ Point::Point(){
 	this->index = 0;
 }
 double Point::distance (Point* otherPoint){
-	return sqrt(pow(this->x - otherPoint->x,2) + pow(this->y - otherPoint->y,2));
+	return sqrt(pow(this->x - otherPoint->x,2) + pow(this->y - otherPoint->y,2)); // Kartesische Distanz
 }
 Point* Point::PointWithMinDistance(std::vector<Point> &allPoints){
 	double lastDistance = 99999999999;
 	Point* nearestPoint = nullptr;
-	for(Point& actualPoint : allPoints){
-		if(actualPoint.arrived == false){
-			if(actualPoint.distance(this) < lastDistance){
+	for(Point& actualPoint : allPoints){					//	Überprüfe die distanz zu jedem Punkt der noch nicht erreicht wurde
+		if(actualPoint.arrived == false){						//
+			if(actualPoint.distance(this) < lastDistance){	//und prüfe für diesen ob dessen distanz zu dem punkt von dem die Methode aufgerufen wurde kleiner als die zuletzt kleinst gefundenene ist
 				lastDistance = actualPoint.distance(this);
 				nearestPoint = &actualPoint;
 			}
@@ -91,7 +91,7 @@ double calcDistanceInArray(std::vector<Point> &allPoints){
 		lastPoint = &actualPoint;
 
 	}
-	distance = allPoints[0].distance(lastPoint);
+	distance = allPoints[0].distance(lastPoint);		//rückweg 
 	sum += distance;
 	return sum;
 }
